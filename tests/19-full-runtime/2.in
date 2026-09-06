@@ -1,0 +1,13 @@
+IMAGE web ubuntu nginx
+RUN c1 web --memory=100 --pids=5
+ALLOC c1 1 50
+ALLOC c1 1 30
+FORK c1
+FORK c1
+FORK c1
+FORK c1
+FORK c1
+ALLOC c1 1 30
+STATUS c1
+STOP c1
+STATUS c1

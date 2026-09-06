@@ -1,0 +1,3 @@
+RUN web
+EXEC web bash
+PROCS web

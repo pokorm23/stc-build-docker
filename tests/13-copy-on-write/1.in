@@ -1,0 +1,2 @@
+LOWER /etc/hostname host
+READ /etc/hostname

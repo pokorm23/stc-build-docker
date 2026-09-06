@@ -1,0 +1,3 @@
+LOWERSET /etc/hostname host
+WRITE /etc/hostname mybox
+READ /etc/hostname

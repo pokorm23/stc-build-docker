@@ -1,0 +1,12 @@
+LAYER ubuntu
+FILE ubuntu /bin/sh
+FILE ubuntu /etc/hostname
+LAYER nginx
+FILE nginx /usr/sbin/nginx
+FILE nginx /etc/hostname
+LAYER my-site
+FILE my-site /var/www/html/index.html
+LOOKUP /etc/hostname
+LOOKUP /bin/sh
+LOOKUP /missing
+LIST

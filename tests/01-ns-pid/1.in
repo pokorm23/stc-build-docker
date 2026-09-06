@@ -1,0 +1,4 @@
+NEWNS
+FORK 1 init
+FORK 1 worker
+PS 1

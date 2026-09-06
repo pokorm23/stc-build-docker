@@ -1,0 +1,4 @@
+CGROUP slow
+QUOTA slow 50000
+RUN slow 30000
+STATUS slow

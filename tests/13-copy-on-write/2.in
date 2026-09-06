@@ -1,0 +1,9 @@
+LOWER /etc/hostname host
+LOWER /etc/passwd root:x:0:0
+READ /etc/hostname
+WRITE /etc/hostname mybox
+READ /etc/hostname
+STAT /etc/hostname
+LIST-UPPER
+WRITE /tmp/data new
+LIST-UPPER

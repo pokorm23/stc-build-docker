@@ -1,0 +1,3 @@
+LAYER base
+FILE base /bin/sh
+LOOKUP /bin/sh

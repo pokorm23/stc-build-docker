@@ -1,0 +1,6 @@
+LAYER base ubuntu
+LAYER app myapp_v1
+ADDLAYER base
+ADDLAYER app
+CONFIG arch=amd64 os=linux author=me
+MANIFEST

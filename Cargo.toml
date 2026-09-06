@@ -1,0 +1,10 @@
+[package]
+name = "rust-fundamentals"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+
+[[bin]]
+name = "rust-fundamentals"
+path = "main.rs"

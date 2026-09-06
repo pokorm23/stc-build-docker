@@ -1,0 +1,4 @@
+PUT-BLOB sha256:aaa 100
+PUT-BLOB sha256:bbb 200
+PUT-MANIFEST library/ubuntu latest sha256:aaa sha256:bbb
+PULL library/ubuntu latest

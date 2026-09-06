@@ -1,0 +1,9 @@
+ROOT /srv/box
+FILE /etc/passwd
+FILE /bin/sh
+RESOLVE /etc/passwd
+RESOLVE /../etc/passwd
+RESOLVE /bin/../etc/passwd
+RESOLVE /etc/../../../etc/passwd
+RESOLVE /bin/sh
+RESOLVE /missing

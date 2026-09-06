@@ -1,0 +1,6 @@
+CGROUP web
+LIMIT web 100
+ALLOC web 1 50
+ALLOC web 2 30
+ALLOC web 3 30
+STATUS web

@@ -1,0 +1,10 @@
+OK
+OK
+OK
+GET /v2/library/ubuntu/manifests/latest
+200 manifest sha256:aaa,sha256:bbb
+GET /v2/library/ubuntu/blobs/sha256:aaa
+200 100 bytes
+GET /v2/library/ubuntu/blobs/sha256:bbb
+200 200 bytes
+PULL COMPLETE library/ubuntu:latest

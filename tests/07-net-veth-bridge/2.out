@@ -1,0 +1,10 @@
+OK
+OK
+OK
+OK
+OK
+OK
+OK
+DIRECT from 172.17.0.2 to 172.17.0.3
+DIRECT from 172.17.0.3 to 172.17.0.2
+NAT from 172.17.0.2 via 172.17.0.1 to 8.8.8.8

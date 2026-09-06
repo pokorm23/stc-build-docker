@@ -1,0 +1,8 @@
+RUN web
+EXEC web bash
+EXEC web ps
+EXEC web vim
+KILL web 101
+PROCS web
+ATTACH web
+STOP web

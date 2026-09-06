@@ -1,0 +1,7 @@
+NEWNS
+FORK 1 init
+NEWNS
+FORK 2 sshd
+FORK 1 worker
+PS 1
+PS 2

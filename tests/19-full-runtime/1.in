@@ -1,0 +1,3 @@
+IMAGE web ubuntu nginx
+RUN c1 web
+STATUS c1

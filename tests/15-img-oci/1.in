@@ -1,0 +1,4 @@
+LAYER base ubuntu_files
+ADDLAYER base
+CONFIG arch=amd64 os=linux
+MANIFEST

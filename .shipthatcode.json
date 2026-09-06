@@ -1,0 +1,86 @@
+{
+  "course": "build-docker",
+  "language": "rust",
+  "language_id": 73,
+  "entrypoint": "main.rs",
+  "version": 1,
+  "content_hash": "53b7c3fd82d8b7aa",
+  "lessons": [
+    {
+      "slug": "ns-pid",
+      "tests_hash": "eee9be06b95d"
+    },
+    {
+      "slug": "ns-mount",
+      "tests_hash": "c91e6db9a17b"
+    },
+    {
+      "slug": "ns-net",
+      "tests_hash": "ad24d2129034"
+    },
+    {
+      "slug": "ns-user",
+      "tests_hash": "f3a0b4ba6780"
+    },
+    {
+      "slug": "ns-uts",
+      "tests_hash": "39c2d8c1ea28"
+    },
+    {
+      "slug": "ns-ipc",
+      "tests_hash": "6e8303fa4573"
+    },
+    {
+      "slug": "net-veth-bridge",
+      "tests_hash": "9cd5414fd6b2"
+    },
+    {
+      "slug": "cgroups-memory",
+      "tests_hash": "df579ba3623d"
+    },
+    {
+      "slug": "cgroups-cpu",
+      "tests_hash": "263441bb1217"
+    },
+    {
+      "slug": "cgroups-pid",
+      "tests_hash": "c1f9fd5557de"
+    },
+    {
+      "slug": "rootfs",
+      "tests_hash": "4785147a3495"
+    },
+    {
+      "slug": "image-layers",
+      "tests_hash": "82645088bcb3"
+    },
+    {
+      "slug": "copy-on-write",
+      "tests_hash": "ed8ad9d3055d"
+    },
+    {
+      "slug": "fs-overlayfs",
+      "tests_hash": "b0f3f7454223"
+    },
+    {
+      "slug": "img-oci",
+      "tests_hash": "a6432309d624"
+    },
+    {
+      "slug": "img-registry",
+      "tests_hash": "49fdc68ae7da"
+    },
+    {
+      "slug": "container-create",
+      "tests_hash": "dc6336bad49f"
+    },
+    {
+      "slug": "exec-attach",
+      "tests_hash": "0a59510e347f"
+    },
+    {
+      "slug": "full-runtime",
+      "tests_hash": "2ecf720c7fd7"
+    }
+  ]
+}

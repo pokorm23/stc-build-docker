@@ -1,0 +1,7 @@
+OK
+OK
+GET /v2/library/alpine/manifests/latest
+200 manifest sha256:aaa
+GET /v2/library/alpine/blobs/sha256:aaa
+200 100 bytes
+PULL COMPLETE library/alpine:latest

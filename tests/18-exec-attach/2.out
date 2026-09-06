@@ -1,0 +1,10 @@
+OK
+100 spawned bash
+101 spawned ps
+102 spawned vim
+KILLED 101
+1 init
+100 bash
+102 vim
+attached to web PID 1
+web stopped (3 processes killed)
