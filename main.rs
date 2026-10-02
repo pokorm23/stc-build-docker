@@ -1,16 +1,9 @@
 use std::{fmt, io::{self, BufRead, Write}, println};
 
-// PID Namespace Simulator
-// Each namespace gets its own PID counter starting at 1.
-// Commands:
-//   NEWNS  -> allocate next ns id, init empty process table, print id
-//   FORK <ns> <name>  -> spawn process; assign in-ns pid; print pid
-//   EXIT <ns> <pid>  -> mark exited; print OK
-//   PS <ns>  -> print '<pid> <name> <state>' sorted by pid
-
 struct PidNamespace {
     id: i32,
     pids: Vec<Pid>,
+    mounts: Vec<Mount>,
 }
 
 #[derive(Debug, Clone, PartialEq, Eq, PartialOrd, Ord)]
@@ -35,13 +28,21 @@ struct Pid {
     state: PidState,
 }
 
+#[derive(Debug, Clone, PartialEq, Eq, PartialOrd, Ord)]
+struct Mount {
+    src: String,
+    dst: String,
+}
+
 fn main() {
     let stdin = io::stdin();
     let stdout = io::stdout();
     let mut out = stdout.lock();
-    let mut buf: Vec<String> = Vec::new();
+    let buf: Vec<String> = Vec::new();
     
     let mut ns: Vec<PidNamespace> = vec![];
+
+    ns.push(PidNamespace { id: 0, pids: vec![], mounts: vec![] });
 
     for line in stdin.lock().lines() {
         let line = line.unwrap();
@@ -50,15 +51,16 @@ fn main() {
         let parts: Vec<&str> = line.split_whitespace().collect();
         match parts[0] {
             "NEWNS" => { 
-                let ns_id = ns.len() as i32 + 1;
-                ns.push(PidNamespace { id: ns_id, pids: vec![] });
+                let ns_id = ns.len() as i32;
+                let ns_root = ns.get(0).unwrap().mounts.clone();
+                ns.push(PidNamespace { id: ns_id, pids: vec![], mounts: ns_root });
                 println!("{}", ns_id);
              }
             "FORK" => { 
                 let ns_id = parts[1].parse::<i32>().unwrap();
                 let name = parts[2];
 
-                let ns = ns.get_mut(ns_id as usize - 1).unwrap();
+                let ns = ns.get_mut(ns_id as usize).unwrap();
 
                 let pid = ns.pids.len() as i32 + 1;
 
@@ -69,21 +71,58 @@ fn main() {
                 let ns_id = parts[1].parse::<i32>().unwrap();
                 let pid = parts[2].parse::<i32>().unwrap();
 
-                let ns = ns.get_mut(ns_id as usize - 1).unwrap();
+                let ns = ns.get_mut(ns_id as usize).unwrap();
                 let mut p = ns.pids.get_mut(pid as usize - 1).unwrap();
                 p.state = PidState::Exited;
                 println!("OK");
              }
             "PS" => {
                 let ns_id = parts[1].parse::<i32>().unwrap();
-                let ns = ns.get(ns_id as usize - 1).unwrap();
+                let ns = ns.get(ns_id as usize).unwrap();
                 let mut pids = ns.pids.iter().collect::<Vec<&Pid>>();
                 pids.sort_by_key(|p| p.id);
 
                 for p in &pids {
                     println!("{} {} {}", p.id, p.name, p.state);
                 }
-             }
+             },
+             "MOUNT" => {
+                let ns_id = parts[1].parse::<i32>().unwrap();
+                let ns = ns.get_mut(ns_id as usize).unwrap();
+                let src = parts[2];
+                let dst = parts[3];
+
+                ns.mounts.retain(|x| x.dst != dst);
+                ns.mounts.push(Mount { src: src.to_string(), dst: dst.to_string() });
+
+                println!("OK");
+             },
+             "UMOUNT" => {
+                let ns_id = parts[1].parse::<i32>().unwrap();
+                let ns = ns.get_mut(ns_id as usize).unwrap();
+                let dst = parts[2];
+
+                ns.mounts.retain(|x| x.dst != dst);
+
+                println!("OK");
+             },
+             "LISTMOUNTS" => {
+                let ns_id = parts[1].parse::<i32>().unwrap();
+                let ns = ns.get(ns_id as usize).unwrap();
+
+                let mut mounts = ns.mounts.iter().map(|x| x.clone()).collect::<Vec<Mount>>();
+
+                mounts.sort_by_key(|p| p.dst.to_string());
+                mounts.dedup_by(|a, b| a.dst == b.dst);
+
+                if (mounts.len() == 0) {
+                    println!("(empty)");
+                }
+
+                for m in &mounts {
+                    println!("{} on {}", m.src, m.dst);
+                }
+             },
             _ => {}
         }
     }
